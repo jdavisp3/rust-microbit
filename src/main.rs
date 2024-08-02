@@ -8,6 +8,14 @@ use cortex_m_rt::entry;
 use embedded_hal::delay::DelayNs;
 use microbit::{board::Board, display::blocking::Display, hal::Timer};
 
+const LETTER_D: [[u8; 5]; 5] = [
+    [0, 1, 1, 0, 0],
+    [0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0],
+    [0, 1, 1, 0, 0],
+];
+
 const LETTER_L: [[u8; 5]; 5] = [
     [0, 1, 0, 0, 0],
     [0, 1, 0, 0, 0],
@@ -47,15 +55,6 @@ fn main() -> ! {
         let mut display: Display = Display::new(board.display_pins);
 
         #[allow(non_snake_case)]
-        let letter_D = [
-            [0, 1, 1, 0, 0],
-            [0, 1, 0, 1, 0],
-            [0, 1, 0, 1, 0],
-            [0, 1, 0, 1, 0],
-            [0, 1, 1, 0, 0],
-        ];
-
-        #[allow(non_snake_case)]
         let letter_X = [
             [1, 0, 0, 0, 1],
             [0, 1, 0, 1, 0],
@@ -79,7 +78,7 @@ fn main() -> ! {
             display.show(&mut timer, LETTER_L, 2000);
             display.show(&mut timer, COLON, 2000);
             display.show(&mut timer, LETTER_P, 2000);
-            display.show(&mut timer, letter_D, 2000);
+            display.show(&mut timer, LETTER_D, 2000);
             display.show(&mut timer, letter_X, 2000);
             display.clear();
             display.show(&mut timer, heart, 2000);
