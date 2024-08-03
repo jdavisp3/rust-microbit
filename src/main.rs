@@ -21,6 +21,7 @@ fn main() -> ! {
             display.show(&mut timer, display::getchar(&display_state, 'M'), 2000);
             display.show(&mut timer, display::getchar(&display_state, 'Y') , 2000);
             display.show(&mut timer, display::getchar(&display_state, 'R'), 2000);
+            display.show(&mut timer, display::getchar(&display_state, 'I'), 2000);
             display.clear();
             display.show(&mut timer, display::getchar(&display_state, '❤'), 2000);
             timer.delay_ms(2500_u32);

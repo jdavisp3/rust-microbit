@@ -12,6 +12,14 @@ const LETTER_D: [[u8; 5]; 5] = [
     [0, 1, 1, 0, 0],
 ];
 
+const LETTER_I: [[u8; 5]; 5] = [
+    [0, 1, 1, 1, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 1, 1, 1, 0],
+];
+
 const LETTER_L: [[u8; 5]; 5] = [
     [0, 1, 0, 0, 0],
     [0, 1, 0, 0, 0],
@@ -87,6 +95,7 @@ const HEART: [[u8; 5]; 5] = [
 pub fn init() -> DisplayState {
     let mut charmap = FnvIndexMap::<char, [[u8; 5]; 5], 16>::new();
     charmap.insert('D', LETTER_D).unwrap();
+    charmap.insert('I', LETTER_I).unwrap();
     charmap.insert('L', LETTER_L).unwrap();
     charmap.insert('M', LETTER_M).unwrap();
     charmap.insert('P', LETTER_P).unwrap();
