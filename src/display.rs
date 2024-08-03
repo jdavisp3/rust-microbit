@@ -1,11 +1,10 @@
 use heapless::FnvIndexMap;
-use microbit::{display::blocking::Display, hal::Timer};
 
 pub struct DisplayState {
     charmap: FnvIndexMap<char, [[u8; 5]; 5], 16>,
 }
 
-pub const LETTER_D: [[u8; 5]; 5] = [
+const LETTER_D: [[u8; 5]; 5] = [
     [0, 1, 1, 0, 0],
     [0, 1, 0, 1, 0],
     [0, 1, 0, 1, 0],
@@ -13,7 +12,7 @@ pub const LETTER_D: [[u8; 5]; 5] = [
     [0, 1, 1, 0, 0],
 ];
 
-pub const LETTER_L: [[u8; 5]; 5] = [
+const LETTER_L: [[u8; 5]; 5] = [
     [0, 1, 0, 0, 0],
     [0, 1, 0, 0, 0],
     [0, 1, 0, 0, 0],
@@ -21,7 +20,7 @@ pub const LETTER_L: [[u8; 5]; 5] = [
     [0, 1, 1, 1, 0],
 ];
 
-pub const LETTER_M: [[u8; 5]; 5] = [
+const LETTER_M: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
     [1, 1, 0, 1, 1],
     [1, 0, 1, 0, 1],
@@ -29,7 +28,7 @@ pub const LETTER_M: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
 ];
 
-pub const LETTER_P: [[u8; 5]; 5] = [
+const LETTER_P: [[u8; 5]; 5] = [
     [0, 1, 1, 1, 0],
     [0, 1, 0, 1, 0],
     [0, 1, 1, 1, 0],
@@ -37,7 +36,7 @@ pub const LETTER_P: [[u8; 5]; 5] = [
     [0, 1, 0, 0, 0],
 ];
 
-pub const LETTER_W: [[u8; 5]; 5] = [
+const LETTER_W: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
     [1, 0, 0, 0, 1],
     [1, 0, 1, 0, 1],
@@ -45,7 +44,7 @@ pub const LETTER_W: [[u8; 5]; 5] = [
     [0, 1, 0, 1, 0],
 ];
 
-pub const LETTER_X: [[u8; 5]; 5] = [
+const LETTER_X: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
     [0, 1, 0, 1, 0],
     [0, 0, 1, 0, 0],
@@ -53,7 +52,7 @@ pub const LETTER_X: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
 ];
 
-pub const LETTER_Y: [[u8; 5]; 5] = [
+const LETTER_Y: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
     [0, 1, 0, 1, 0],
     [0, 0, 1, 0, 0],
@@ -61,7 +60,7 @@ pub const LETTER_Y: [[u8; 5]; 5] = [
     [0, 0, 1, 0, 0],
 ];
 
-pub const COLON: [[u8; 5]; 5] = [
+const COLON: [[u8; 5]; 5] = [
     [0, 0, 1, 0, 0],
     [0, 0, 1, 0, 0],
     [0, 0, 0, 0, 0],
@@ -69,7 +68,7 @@ pub const COLON: [[u8; 5]; 5] = [
     [0, 0, 1, 0, 0],
 ];
 
-pub const HEART: [[u8; 5]; 5] = [
+const HEART: [[u8; 5]; 5] = [
     [0, 1, 0, 1, 0],
     [1, 0, 1, 0, 1],
     [1, 0, 0, 0, 1],
@@ -93,6 +92,9 @@ pub fn init() -> DisplayState {
     }
 }
 
-pub fn getchar(state: &DisplayState, c: char) -> Option<&[[u8; 5]; 5]> {
-    state.charmap.get(&c)
+pub fn getchar(state: &DisplayState, c: char) -> [[u8; 5]; 5] {
+    match state.charmap.get(&c) {
+        Some(&ch) => ch,
+        None => panic!("Character not found"),
+    }
 }

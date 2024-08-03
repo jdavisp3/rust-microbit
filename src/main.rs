@@ -19,14 +19,9 @@ fn main() -> ! {
 
         loop {
             display.show(&mut timer, display::getchar(&display_state, 'M'), 2000);
-            display.show(&mut timer, display::LETTER_Y, 2000);
-            display.show(&mut timer, display::LETTER_L, 2000);
-            display.show(&mut timer, display::COLON, 2000);
-            display.show(&mut timer, display::LETTER_P, 2000);
-            display.show(&mut timer, display::LETTER_D, 2000);
-            display.show(&mut timer, display::LETTER_X, 2000);
+            display.show(&mut timer, display::getchar(&display_state, 'Y') , 2000);
             display.clear();
-            display.show(&mut timer, display::HEART, 2000);
+            display.show(&mut timer, display::getchar(&display_state, '❤'), 2000);
             timer.delay_ms(2500_u32);
         }
     }
