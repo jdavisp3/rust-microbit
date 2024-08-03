@@ -17,8 +17,8 @@ fn main() -> ! {
         let mut display: Display = Display::new(board.display_pins);
 
         loop {
-            display.show(&mut timer, display::LETTER_P, 2000);
-            display.show(&mut timer, display::LETTER_W, 2000);
+            display.show(&mut timer, display::LETTER_M, 2000);
+            display.show(&mut timer, display::LETTER_Y, 2000);
             display.show(&mut timer, display::LETTER_L, 2000);
             display.show(&mut timer, display::COLON, 2000);
             display.show(&mut timer, display::LETTER_P, 2000);
