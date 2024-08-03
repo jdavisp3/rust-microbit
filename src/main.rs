@@ -15,9 +15,10 @@ fn main() -> ! {
     if let Some(board) = Board::take() {
         let mut timer = Timer::new(board.TIMER0);
         let mut display: Display = Display::new(board.display_pins);
+        let display_state = display::init();
 
         loop {
-            display.show(&mut timer, display::LETTER_M, 2000);
+            display.show(&mut timer, display::getchar(&display_state, 'M'), 2000);
             display.show(&mut timer, display::LETTER_Y, 2000);
             display.show(&mut timer, display::LETTER_L, 2000);
             display.show(&mut timer, display::COLON, 2000);
