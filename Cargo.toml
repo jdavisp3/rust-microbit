@@ -14,3 +14,8 @@ microbit-v2 = "0.15.0"
 [dependencies.cortex-m]
 version = "0.7.7"
 features = ["inline-asm", "critical-section-single-core"]
+
+[[bin]]
+name = "rust-microbit"
+test = false
+doc = false
