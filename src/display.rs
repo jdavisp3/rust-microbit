@@ -12,6 +12,14 @@ const LETTER_A: [[u8; 5]; 5] = [
     [0, 1, 0, 1, 0],
 ];
 
+const LETTER_C: [[u8; 5]; 5] = [
+    [0, 1, 1, 1, 0],
+    [0, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0],
+    [0, 1, 1, 1, 0],
+];
+
 const LETTER_D: [[u8; 5]; 5] = [
     [0, 1, 1, 0, 0],
     [0, 1, 0, 1, 0],
@@ -143,6 +151,7 @@ const SPACE: [[u8; 5]; 5] = [
 pub fn init() -> DisplayState {
     let mut charmap = FnvIndexMap::<char, [[u8; 5]; 5], 32>::new();
     charmap.insert('A', LETTER_A).unwrap();
+    charmap.insert('C', LETTER_C).unwrap();
     charmap.insert('D', LETTER_D).unwrap();
     charmap.insert('E', LETTER_E).unwrap();
     charmap.insert('G', LETTER_G).unwrap();

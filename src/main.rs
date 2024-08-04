@@ -26,7 +26,7 @@ fn main() -> ! {
         };
 
         loop {
-            show_string("MYRIAD GENETI");
+            show_string("MYRIAD GENETIC");
             show_string("❤");
         }
     }
