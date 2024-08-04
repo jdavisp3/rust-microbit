@@ -26,7 +26,7 @@ fn main() -> ! {
         };
 
         loop {
-            show_string("MYRIAD G");
+            show_string("MYRIAD GE");
             show_string("❤");
         }
     }
