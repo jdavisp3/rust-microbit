@@ -19,14 +19,14 @@ fn main() -> ! {
 
         let mut show_string = |s: &str| {
             for c in s.chars() {
-                display.show(&mut timer, display::getchar(&display_state, c), 2000);
+                display.show(&mut timer, display::getchar(&display_state, c), 1000);
             }
             display.clear();
             timer.delay_ms(500_u32);
         };
 
         loop {
-            show_string("MYRIAD GENE");
+            show_string("MYRIAD GENETI");
             show_string("❤");
         }
     }

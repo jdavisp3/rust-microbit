@@ -84,6 +84,14 @@ const LETTER_R: [[u8; 5]; 5] = [
     [0, 1, 0, 1, 0],
 ];
 
+const LETTER_T: [[u8; 5]; 5] = [
+    [0, 1, 1, 1, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+];
+
 const LETTER_W: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
     [1, 0, 0, 0, 1],
@@ -144,6 +152,7 @@ pub fn init() -> DisplayState {
     charmap.insert('N', LETTER_N).unwrap();
     charmap.insert('P', LETTER_P).unwrap();
     charmap.insert('R', LETTER_R).unwrap();
+    charmap.insert('T', LETTER_T).unwrap();
     charmap.insert('W', LETTER_W).unwrap();
     charmap.insert('X', LETTER_X).unwrap();
     charmap.insert('Y', LETTER_Y).unwrap();
