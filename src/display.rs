@@ -20,6 +20,14 @@ const LETTER_D: [[u8; 5]; 5] = [
     [0, 1, 1, 0, 0],
 ];
 
+const LETTER_G: [[u8; 5]; 5] = [
+    [0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 0],
+    [1, 0, 1, 1, 0],
+    [1, 0, 0, 1, 0],
+    [0, 1, 1, 1, 0],
+];
+
 const LETTER_I: [[u8; 5]; 5] = [
     [0, 1, 1, 1, 0],
     [0, 0, 1, 0, 0],
@@ -100,10 +108,19 @@ const HEART: [[u8; 5]; 5] = [
     [0, 0, 1, 0, 0],
 ];
 
+const SPACE: [[u8; 5]; 5] = [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+];
+
 pub fn init() -> DisplayState {
     let mut charmap = FnvIndexMap::<char, [[u8; 5]; 5], 16>::new();
     charmap.insert('A', LETTER_A).unwrap();
     charmap.insert('D', LETTER_D).unwrap();
+    charmap.insert('G', LETTER_G).unwrap();
     charmap.insert('I', LETTER_I).unwrap();
     charmap.insert('L', LETTER_L).unwrap();
     charmap.insert('M', LETTER_M).unwrap();
@@ -114,6 +131,7 @@ pub fn init() -> DisplayState {
     charmap.insert('Y', LETTER_Y).unwrap();
     charmap.insert(':', COLON).unwrap();
     charmap.insert('❤', HEART).unwrap();
+    charmap.insert(' ', SPACE).unwrap();
     DisplayState {
         charmap,
     }
