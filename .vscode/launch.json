@@ -21,9 +21,6 @@
                     "programBinary": "./target/thumbv7em-none-eabihf/debug/${workspaceFolderBasename}"
                 }
             ],
-            "env": {
-                "RUST_LOG": "info"
-            },
             "consoleLogLevel": "Console"
         }
     ]

@@ -20,3 +20,11 @@ features = ["inline-asm", "critical-section-single-core"]
 name = "rust-microbit"
 test = false
 doc = false
+
+[profile.dev]
+codegen-units = 1
+debug = 2
+debug-assertions = true # <-
+incremental = false
+opt-level = 'z'         # <-
+overflow-checks = true  # <-
