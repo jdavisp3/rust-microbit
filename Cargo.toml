@@ -24,7 +24,5 @@ doc = false
 [profile.dev]
 codegen-units = 1
 debug = 2
-debug-assertions = true # <-
+debug-assertions = true
 incremental = false
-opt-level = 'z'         # <-
-overflow-checks = true  # <-
