@@ -1,10 +1,12 @@
 use heapless::FnvIndexMap;
 
+pub type DisplayBuffer = [[u8; 5]; 5];
+
 pub struct DisplayState {
-    charmap: FnvIndexMap<char, [[u8; 5]; 5], 32>,
+    charmap: FnvIndexMap<char, DisplayBuffer, 32>,
 }
 
-const LETTER_A: [[u8; 5]; 5] = [
+const LETTER_A: DisplayBuffer = [
     [0, 1, 1, 1, 0],
     [0, 1, 0, 1, 0],
     [0, 1, 1, 1, 0],
@@ -12,7 +14,7 @@ const LETTER_A: [[u8; 5]; 5] = [
     [0, 1, 0, 1, 0],
 ];
 
-const LETTER_C: [[u8; 5]; 5] = [
+const LETTER_C: DisplayBuffer = [
     [0, 1, 1, 1, 0],
     [0, 1, 0, 0, 0],
     [0, 1, 0, 0, 0],
@@ -20,7 +22,7 @@ const LETTER_C: [[u8; 5]; 5] = [
     [0, 1, 1, 1, 0],
 ];
 
-const LETTER_D: [[u8; 5]; 5] = [
+const LETTER_D: DisplayBuffer = [
     [0, 1, 1, 0, 0],
     [0, 1, 0, 1, 0],
     [0, 1, 0, 1, 0],
@@ -28,7 +30,7 @@ const LETTER_D: [[u8; 5]; 5] = [
     [0, 1, 1, 0, 0],
 ];
 
-const LETTER_E: [[u8; 5]; 5] = [
+const LETTER_E: DisplayBuffer = [
     [0, 1, 1, 1, 0],
     [0, 1, 0, 0, 0],
     [0, 1, 1, 1, 0],
@@ -36,7 +38,7 @@ const LETTER_E: [[u8; 5]; 5] = [
     [0, 1, 1, 1, 0],
 ];
 
-const LETTER_G: [[u8; 5]; 5] = [
+const LETTER_G: DisplayBuffer = [
     [0, 1, 1, 1, 0],
     [1, 0, 0, 0, 0],
     [1, 0, 1, 1, 0],
@@ -44,7 +46,7 @@ const LETTER_G: [[u8; 5]; 5] = [
     [0, 1, 1, 1, 0],
 ];
 
-const LETTER_I: [[u8; 5]; 5] = [
+const LETTER_I: DisplayBuffer = [
     [0, 1, 1, 1, 0],
     [0, 0, 1, 0, 0],
     [0, 0, 1, 0, 0],
@@ -52,7 +54,7 @@ const LETTER_I: [[u8; 5]; 5] = [
     [0, 1, 1, 1, 0],
 ];
 
-const LETTER_L: [[u8; 5]; 5] = [
+const LETTER_L: DisplayBuffer = [
     [0, 1, 0, 0, 0],
     [0, 1, 0, 0, 0],
     [0, 1, 0, 0, 0],
@@ -60,7 +62,7 @@ const LETTER_L: [[u8; 5]; 5] = [
     [0, 1, 1, 1, 0],
 ];
 
-const LETTER_M: [[u8; 5]; 5] = [
+const LETTER_M: DisplayBuffer = [
     [1, 0, 0, 0, 1],
     [1, 1, 0, 1, 1],
     [1, 0, 1, 0, 1],
@@ -68,7 +70,7 @@ const LETTER_M: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
 ];
 
-const LETTER_N: [[u8; 5]; 5] = [
+const LETTER_N: DisplayBuffer = [
     [1, 0, 0, 0, 1],
     [1, 1, 0, 0, 1],
     [1, 0, 1, 0, 1],
@@ -76,7 +78,7 @@ const LETTER_N: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
 ];
 
-const LETTER_P: [[u8; 5]; 5] = [
+const LETTER_P: DisplayBuffer = [
     [0, 1, 1, 1, 0],
     [0, 1, 0, 1, 0],
     [0, 1, 1, 1, 0],
@@ -84,7 +86,7 @@ const LETTER_P: [[u8; 5]; 5] = [
     [0, 1, 0, 0, 0],
 ];
 
-const LETTER_R: [[u8; 5]; 5] = [
+const LETTER_R: DisplayBuffer = [
     [0, 1, 1, 1, 0],
     [0, 1, 0, 1, 0],
     [0, 1, 1, 0, 0],
@@ -92,7 +94,7 @@ const LETTER_R: [[u8; 5]; 5] = [
     [0, 1, 0, 1, 0],
 ];
 
-const LETTER_S: [[u8; 5]; 5] = [
+const LETTER_S: DisplayBuffer = [
     [0, 1, 1, 1, 0],
     [0, 1, 0, 0, 0],
     [0, 1, 1, 1, 0],
@@ -100,7 +102,7 @@ const LETTER_S: [[u8; 5]; 5] = [
     [0, 1, 1, 1, 0],
 ];
 
-const LETTER_T: [[u8; 5]; 5] = [
+const LETTER_T: DisplayBuffer = [
     [0, 1, 1, 1, 0],
     [0, 0, 1, 0, 0],
     [0, 0, 1, 0, 0],
@@ -108,7 +110,7 @@ const LETTER_T: [[u8; 5]; 5] = [
     [0, 0, 1, 0, 0],
 ];
 
-const LETTER_W: [[u8; 5]; 5] = [
+const LETTER_W: DisplayBuffer = [
     [1, 0, 0, 0, 1],
     [1, 0, 0, 0, 1],
     [1, 0, 1, 0, 1],
@@ -116,7 +118,7 @@ const LETTER_W: [[u8; 5]; 5] = [
     [0, 1, 0, 1, 0],
 ];
 
-const LETTER_X: [[u8; 5]; 5] = [
+const LETTER_X: DisplayBuffer = [
     [1, 0, 0, 0, 1],
     [0, 1, 0, 1, 0],
     [0, 0, 1, 0, 0],
@@ -124,7 +126,7 @@ const LETTER_X: [[u8; 5]; 5] = [
     [1, 0, 0, 0, 1],
 ];
 
-const LETTER_Y: [[u8; 5]; 5] = [
+const LETTER_Y: DisplayBuffer = [
     [1, 0, 0, 0, 1],
     [0, 1, 0, 1, 0],
     [0, 0, 1, 0, 0],
@@ -132,7 +134,7 @@ const LETTER_Y: [[u8; 5]; 5] = [
     [0, 0, 1, 0, 0],
 ];
 
-const COLON: [[u8; 5]; 5] = [
+const COLON: DisplayBuffer = [
     [0, 0, 1, 0, 0],
     [0, 0, 1, 0, 0],
     [0, 0, 0, 0, 0],
@@ -140,7 +142,7 @@ const COLON: [[u8; 5]; 5] = [
     [0, 0, 1, 0, 0],
 ];
 
-const HEART: [[u8; 5]; 5] = [
+const HEART: DisplayBuffer = [
     [0, 1, 0, 1, 0],
     [1, 0, 1, 0, 1],
     [1, 0, 0, 0, 1],
@@ -148,7 +150,7 @@ const HEART: [[u8; 5]; 5] = [
     [0, 0, 1, 0, 0],
 ];
 
-const SPACE: [[u8; 5]; 5] = [
+const SPACE: DisplayBuffer = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
@@ -157,7 +159,7 @@ const SPACE: [[u8; 5]; 5] = [
 ];
 
 pub fn init() -> DisplayState {
-    let mut charmap = FnvIndexMap::<char, [[u8; 5]; 5], 32>::new();
+    let mut charmap = FnvIndexMap::<char, DisplayBuffer, 32>::new();
     charmap.insert('A', LETTER_A).unwrap();
     charmap.insert('C', LETTER_C).unwrap();
     charmap.insert('D', LETTER_D).unwrap();
@@ -182,7 +184,7 @@ pub fn init() -> DisplayState {
     }
 }
 
-pub fn getchar(state: &DisplayState, c: char) -> [[u8; 5]; 5] {
+pub fn getchar(state: &DisplayState, c: char) -> DisplayBuffer {
     match state.charmap.get(&c) {
         Some(&ch) => ch,
         None => panic!("Character not found"),
