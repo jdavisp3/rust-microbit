@@ -25,7 +25,7 @@ fn main() -> ! {
                     for col in 0..5 {
                         let char_index = (x + col).div_euclid(5);
                         let mut bit: u8 = 0;
-                        if char_index >= 0 && char_index < s.len() as i32 {
+                        if char_index >= 0 && char_index < s.chars().count() as i32 {
                             let col_offset = (x + col).rem_euclid(5);
                             let c: char = s.chars().nth(char_index as usize).unwrap();
                             let display_c: display::DisplayBuffer = display::getchar(&display_state, c);
