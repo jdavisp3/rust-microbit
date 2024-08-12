@@ -19,7 +19,7 @@ fn main() -> ! {
         loop {
             let s = "MYRIAD GENETICS ❤";
             let last_x = (s.chars().count() as i32 * 5) + 1;
-            for x in -3..last_x {
+            for x in -5..last_x {
                 let mut screen: display::DisplayBuffer = [[0; 5]; 5];
                  for row in 0..5 {
                     for col in 0..5 {
@@ -34,10 +34,10 @@ fn main() -> ! {
                         screen[row as usize][col as usize] = bit;
                     }
                 }
-                display.show(&mut timer, screen, 1000);
+                display.show(&mut timer, screen, 200);
             }
         }
     }
 
-    panic!("End ❤");
+    panic!("End");
 }
