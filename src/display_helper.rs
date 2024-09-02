@@ -37,8 +37,21 @@ impl DisplayHelper {
     }
 
     pub fn get_display_buffer_at_col(&self, s: &str, mut start_col: usize) -> DisplayBuffer {
-        let mut screen: DisplayBuffer = BLANK;
         start_col = start_col.div_euclid(self.get_scroll_width(s));
+
+        let mut screen: DisplayBuffer = BLANK;
+        let mut char_index = 0;
+        let char: CharBuffer = self.getchar(s.chars().nth(char_index).unwrap());
+        let mut char_col: usize = char.start_col;
+
+        for scan_col in 0..start_col + 5 {
+            if scan_col >= start_col {
+                for row in 0..5 {
+                    screen[row][scan_col - start_col] = char.buffer[row][char_col];
+                }
+            }
+        }
+
         return screen;
     }
 }
@@ -199,9 +212,9 @@ pub const BLANK: DisplayBuffer = SPACE;
 
 
 fn char_to_buffer(ch: DisplayBuffer) -> CharBuffer {
-    let mut start_col = 0;
+    let mut start_col: usize = 0;
     for col in 0..5 {
-        let mut empty = true;
+        let mut empty: bool = true;
         for row in 0..5 {
             if ch[row][col] == 1 {
                 empty = false;
@@ -213,9 +226,9 @@ fn char_to_buffer(ch: DisplayBuffer) -> CharBuffer {
             break;
         }
     }
-    let mut end_col = 4;
+    let mut end_col: usize = 4;
     for col in (start_col..5).rev() {
-        let mut empty = true;
+        let mut empty: bool = true;
         for row in 0..5 {
             if ch[row][col] == 1 {
                 empty = false;
@@ -229,8 +242,8 @@ fn char_to_buffer(ch: DisplayBuffer) -> CharBuffer {
     }
     let cb: CharBuffer = CharBuffer {
         buffer: ch,
-        start_col: start_col,
-        end_col: end_col,
+        start_col,
+        end_col,
     };
     return cb;
 }
