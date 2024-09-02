@@ -20,7 +20,7 @@ fn main() -> ! {
             let s = " MYRIAD GENETICS ❤";
             let last_x = (s.chars().count() as i32 * 5) + 1;
             for x in 0..last_x {
-                let mut screen: display_helper::DisplayBuffer = [[0; 5]; 5];
+                let mut screen: display_helper::DisplayBuffer = display_helper::BLANK;
                  for row in 0..5 {
                     for col in 0..5 {
                         let char_index = (x + col).div_euclid(5);

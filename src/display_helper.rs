@@ -28,15 +28,18 @@ impl DisplayHelper {
         }
     }
 
-    pub fn getscrollwidth(&self, s: &str) -> usize {
+    pub fn get_scroll_width(&self, s: &str) -> usize {
         let mut width: usize = 0;
         for c in s.chars() {
             width += self.getchar(c).width();
         }
-        if s.chars().count() > 1 {
-            width += s.chars().count() - 1;
-        }
-        return width;
+        return width + s.chars().count();
+    }
+
+    pub fn get_display_buffer_at_col(&self, s: &str, mut start_col: usize) -> DisplayBuffer {
+        let mut screen: DisplayBuffer = BLANK;
+        start_col = start_col.div_euclid(self.get_scroll_width(s));
+        return screen;
     }
 }
 
@@ -191,6 +194,9 @@ const SPACE: DisplayBuffer = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
 ];
+
+pub const BLANK: DisplayBuffer = SPACE;
+
 
 fn char_to_buffer(ch: DisplayBuffer) -> CharBuffer {
     let mut start_col = 0;
