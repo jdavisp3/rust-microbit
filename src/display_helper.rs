@@ -40,7 +40,7 @@ impl DisplayHelper {
         start_col = start_col.div_euclid(self.get_scroll_width(s));
 
         let mut screen: DisplayBuffer = BLANK;
-        let mut char_index = 0;
+        let mut char_index: usize = 0;
         let mut char: CharBuffer = self.getchar(s.chars().nth(char_index).unwrap());
         let mut char_col: usize = char.start_col;
 
@@ -51,8 +51,8 @@ impl DisplayHelper {
                 }
             }
             if char_col == char.end_col {
-                char_index += 1;
-                if char_index < s.chars().count() {
+                if char_index + 1 < s.chars().count() {
+                    char_index += 1;
                     char = self.getchar(s.chars().nth(char_index).unwrap());
                 } else {
                     char = self.getchar(' ');

@@ -17,23 +17,10 @@ fn main() -> ! {
         let helper = display_helper::init();
  
         loop {
-            let s = " MYRIAD GENETICS ❤";
-            let last_x = (s.chars().count() as i32 * 5) + 1;
+            let s: &str = " MYRIAD GENETICS ❤";
+            let last_x: usize = helper.get_scroll_width(s);
             for x in 0..last_x {
-                let mut screen: display_helper::DisplayBuffer = display_helper::BLANK;
-                 for row in 0..5 {
-                    for col in 0..5 {
-                        let char_index = (x + col).div_euclid(5);
-                        let mut bit: u8 = 0;
-                        if char_index >= 0 && char_index < s.chars().count() as i32 {
-                            let col_offset = (x + col).rem_euclid(5);
-                            let c: char = s.chars().nth(char_index as usize).unwrap();
-                            let display_c: display_helper::DisplayBuffer = helper.getchar(c).buffer;
-                            bit = display_c[row as usize][col_offset as usize];
-                        }
-                        screen[row as usize][col as usize] = bit;
-                    }
-                }
+                let screen = helper.get_display_buffer_at_col(s, x);
                 display.show(&mut timer, screen, 200);
             }
         }
