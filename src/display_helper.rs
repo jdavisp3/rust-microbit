@@ -47,10 +47,12 @@ impl DisplayHelper {
         for scan_col in 0..start_col + 5 {
             if scan_col >= start_col {
                 for row in 0..5 {
-                    screen[row][scan_col - start_col] = char.buffer[row][char_col];
+                    if char_col <= char.end_col {
+                        screen[row][scan_col - start_col] = char.buffer[row][char_col];
+                    }
                 }
             }
-            if char_col == char.end_col {
+            if char_col > char.end_col {
                 if char_index + 1 < s.chars().count() {
                     char_index += 1;
                     char = self.getchar(s.chars().nth(char_index).unwrap());
