@@ -9,6 +9,12 @@ pub struct CharBuffer {
     pub end_col: usize,
 }
 
+impl CharBuffer {
+    pub fn width(&self) -> usize {
+        return self.end_col - self.start_col + 1;
+    }
+}
+
 pub struct DisplayState {
     charmap: FnvIndexMap<char, CharBuffer, 32>,
 }

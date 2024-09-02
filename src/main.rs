@@ -17,9 +17,9 @@ fn main() -> ! {
         let display_state = display::init();
  
         loop {
-            let s = "MYRIAD GENETICS ❤";
+            let s = " MYRIAD GENETICS ❤";
             let last_x = (s.chars().count() as i32 * 5) + 1;
-            for x in -5..last_x {
+            for x in 0..last_x {
                 let mut screen: display::DisplayBuffer = [[0; 5]; 5];
                  for row in 0..5 {
                     for col in 0..5 {
