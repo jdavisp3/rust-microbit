@@ -15,8 +15,18 @@ impl CharBuffer {
     }
 }
 
-pub struct DisplayState {
+pub struct DisplayHelper {
     charmap: FnvIndexMap<char, CharBuffer, 32>,
+}
+
+
+impl DisplayHelper {
+    pub fn getchar(&self, c: char) -> CharBuffer {
+        match self.charmap.get(&c) {
+            Some(&ch) => ch,
+            None => panic!("Character not found"),
+        }
+}
 }
 
 const LETTER_A: DisplayBuffer = [
@@ -208,7 +218,7 @@ fn char_to_buffer(ch: DisplayBuffer) -> CharBuffer {
     return cb;
 }
 
-pub fn init() -> DisplayState {
+pub fn init() -> DisplayHelper {
     let mut charmap = FnvIndexMap::<char, CharBuffer, 32>::new();
     let _ = charmap.insert('A', char_to_buffer(LETTER_A));
     let _ = charmap.insert('C', char_to_buffer(LETTER_C));
@@ -229,14 +239,7 @@ pub fn init() -> DisplayState {
     let _ = charmap.insert(':', char_to_buffer(COLON));
     let _ = charmap.insert('❤', char_to_buffer(HEART));
     let _ = charmap.insert(' ', char_to_buffer(SPACE));
-    DisplayState {
+    DisplayHelper {
         charmap,
-    }
-}
-
-pub fn getchar(state: &DisplayState, c: char) -> CharBuffer {
-    match state.charmap.get(&c) {
-        Some(&ch) => ch,
-        None => panic!("Character not found"),
     }
 }
