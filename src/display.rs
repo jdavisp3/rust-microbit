@@ -2,8 +2,15 @@ use heapless::FnvIndexMap;
 
 pub type DisplayBuffer = [[u8; 5]; 5];
 
+#[derive(Clone, Copy)]
+pub struct CharBuffer {
+    pub buffer: DisplayBuffer,
+    pub start_col: u8,
+    pub end_col: u8,
+}
+
 pub struct DisplayState {
-    charmap: FnvIndexMap<char, DisplayBuffer, 32>,
+    charmap: FnvIndexMap<char, CharBuffer, 32>,
 }
 
 const LETTER_A: DisplayBuffer = [
@@ -158,33 +165,42 @@ const SPACE: DisplayBuffer = [
     [0, 0, 0, 0, 0],
 ];
 
+fn char_to_buffer(ch: DisplayBuffer) -> CharBuffer {
+    let cb: CharBuffer = CharBuffer {
+        buffer: ch,
+        start_col: 0,
+        end_col: 4,
+    };
+    return cb;
+}
+
 pub fn init() -> DisplayState {
-    let mut charmap = FnvIndexMap::<char, DisplayBuffer, 32>::new();
-    charmap.insert('A', LETTER_A).unwrap();
-    charmap.insert('C', LETTER_C).unwrap();
-    charmap.insert('D', LETTER_D).unwrap();
-    charmap.insert('E', LETTER_E).unwrap();
-    charmap.insert('G', LETTER_G).unwrap();
-    charmap.insert('I', LETTER_I).unwrap();
-    charmap.insert('L', LETTER_L).unwrap();
-    charmap.insert('M', LETTER_M).unwrap();
-    charmap.insert('N', LETTER_N).unwrap();
-    charmap.insert('P', LETTER_P).unwrap();
-    charmap.insert('R', LETTER_R).unwrap();
-    charmap.insert('S', LETTER_S).unwrap();
-    charmap.insert('T', LETTER_T).unwrap();
-    charmap.insert('W', LETTER_W).unwrap();
-    charmap.insert('X', LETTER_X).unwrap();
-    charmap.insert('Y', LETTER_Y).unwrap();
-    charmap.insert(':', COLON).unwrap();
-    charmap.insert('❤', HEART).unwrap();
-    charmap.insert(' ', SPACE).unwrap();
+    let mut charmap = FnvIndexMap::<char, CharBuffer, 32>::new();
+    let _ = charmap.insert('A', char_to_buffer(LETTER_A));
+    let _ = charmap.insert('C', char_to_buffer(LETTER_C));
+    let _ = charmap.insert('D', char_to_buffer(LETTER_D));
+    let _ = charmap.insert('E', char_to_buffer(LETTER_E));
+    let _ = charmap.insert('G', char_to_buffer(LETTER_G));
+    let _ = charmap.insert('I', char_to_buffer(LETTER_I));
+    let _ = charmap.insert('L', char_to_buffer(LETTER_L));
+    let _ = charmap.insert('M', char_to_buffer(LETTER_M));
+    let _ = charmap.insert('N', char_to_buffer(LETTER_N));
+    let _ = charmap.insert('P', char_to_buffer(LETTER_P));
+    let _ = charmap.insert('R', char_to_buffer(LETTER_R));
+    let _ = charmap.insert('S', char_to_buffer(LETTER_S));
+    let _ = charmap.insert('T', char_to_buffer(LETTER_T));
+    let _ = charmap.insert('W', char_to_buffer(LETTER_W));
+    let _ = charmap.insert('X', char_to_buffer(LETTER_X));
+    let _ = charmap.insert('Y', char_to_buffer(LETTER_Y));
+    let _ = charmap.insert(':', char_to_buffer(COLON));
+    let _ = charmap.insert('❤', char_to_buffer(HEART));
+    let _ = charmap.insert(' ', char_to_buffer(SPACE));
     DisplayState {
         charmap,
     }
 }
 
-pub fn getchar(state: &DisplayState, c: char) -> DisplayBuffer {
+pub fn getchar(state: &DisplayState, c: char) -> CharBuffer {
     match state.charmap.get(&c) {
         Some(&ch) => ch,
         None => panic!("Character not found"),
