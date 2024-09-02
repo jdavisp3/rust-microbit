@@ -41,7 +41,7 @@ impl DisplayHelper {
 
         let mut screen: DisplayBuffer = BLANK;
         let mut char_index = 0;
-        let char: CharBuffer = self.getchar(s.chars().nth(char_index).unwrap());
+        let mut char: CharBuffer = self.getchar(s.chars().nth(char_index).unwrap());
         let mut char_col: usize = char.start_col;
 
         for scan_col in 0..start_col + 5 {
@@ -49,6 +49,17 @@ impl DisplayHelper {
                 for row in 0..5 {
                     screen[row][scan_col - start_col] = char.buffer[row][char_col];
                 }
+            }
+            if char_col == char.end_col {
+                char_index += 1;
+                if char_index < s.chars().count() {
+                    char = self.getchar(s.chars().nth(char_index).unwrap());
+                } else {
+                    char = self.getchar(' ');
+                }
+                char_col = char.start_col;
+            } else {
+                char_col += 1;
             }
         }
 
