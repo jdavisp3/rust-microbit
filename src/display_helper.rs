@@ -26,7 +26,18 @@ impl DisplayHelper {
             Some(&ch) => ch,
             None => panic!("Character not found"),
         }
-}
+    }
+
+    pub fn getscrollwidth(&self, s: &str) -> usize {
+        let mut width: usize = 0;
+        for c in s.chars() {
+            width += self.getchar(c).width();
+        }
+        if s.chars().count() > 1 {
+            width += s.chars().count() - 1;
+        }
+        return width;
+    }
 }
 
 const LETTER_A: DisplayBuffer = [

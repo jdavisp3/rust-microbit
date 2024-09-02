@@ -14,7 +14,7 @@ fn main() -> ! {
     if let Some(board) = Board::take() {
         let mut timer = Timer::new(board.TIMER0);
         let mut display: Display = Display::new(board.display_pins);
-        let display_helper = display_helper::init();
+        let helper = display_helper::init();
  
         loop {
             let s = " MYRIAD GENETICS ❤";
@@ -28,7 +28,7 @@ fn main() -> ! {
                         if char_index >= 0 && char_index < s.chars().count() as i32 {
                             let col_offset = (x + col).rem_euclid(5);
                             let c: char = s.chars().nth(char_index as usize).unwrap();
-                            let display_c: display_helper::DisplayBuffer = display_helper.getchar(c).buffer;
+                            let display_c: display_helper::DisplayBuffer = helper.getchar(c).buffer;
                             bit = display_c[row as usize][col_offset as usize];
                         }
                         screen[row as usize][col as usize] = bit;
