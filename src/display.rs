@@ -5,8 +5,8 @@ pub type DisplayBuffer = [[u8; 5]; 5];
 #[derive(Clone, Copy)]
 pub struct CharBuffer {
     pub buffer: DisplayBuffer,
-    pub start_col: u8,
-    pub end_col: u8,
+    pub start_col: usize,
+    pub end_col: usize,
 }
 
 pub struct DisplayState {
@@ -166,10 +166,38 @@ const SPACE: DisplayBuffer = [
 ];
 
 fn char_to_buffer(ch: DisplayBuffer) -> CharBuffer {
+    let mut start_col = 0;
+    for col in 0..5 {
+        let mut empty = true;
+        for row in 0..5 {
+            if ch[row][col] == 1 {
+                empty = false;
+                break;
+            }
+        }
+        if !empty {
+            start_col = col;
+            break;
+        }
+    }
+    let mut end_col = 4;
+    for col in (start_col..5).rev() {
+        let mut empty = true;
+        for row in 0..5 {
+            if ch[row][col] == 1 {
+                empty = false;
+                break;
+            }
+        }
+        if !empty {
+            end_col = col;
+            break;
+        }
+    }
     let cb: CharBuffer = CharBuffer {
         buffer: ch,
-        start_col: 0,
-        end_col: 4,
+        start_col: start_col,
+        end_col: end_col,
     };
     return cb;
 }
