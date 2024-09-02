@@ -37,7 +37,7 @@ impl DisplayHelper {
     }
 
     pub fn get_display_buffer_at_col(&self, s: &str, mut start_col: usize) -> DisplayBuffer {
-        start_col = start_col.div_euclid(self.get_scroll_width(s));
+        start_col = start_col.rem_euclid(self.get_scroll_width(s));
 
         let mut screen: DisplayBuffer = BLANK;
         let mut char_index: usize = 0;
